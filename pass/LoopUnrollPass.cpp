@@ -18,7 +18,6 @@ struct LoopUnrollPass : public FunctionPass {
   bool runOnFunction(Function &F) override {
     errs() << "[+] Running Loop Unroll Pass on function: " << F.getName() << "\n";
 
-    // Just print loop headers for now
     for (auto &BB : F) {
       for (auto &I : BB) {
         if (auto *br = dyn_cast<BranchInst>(&I)) {
@@ -29,12 +28,11 @@ struct LoopUnrollPass : public FunctionPass {
       }
     }
 
-    // No modifications done in this skeleton
     return false;
   }
 };
 
-} // namespace
+}
 
 char LoopUnrollPass::ID = 0;
 static RegisterPass<LoopUnrollPass> X("loop-unroll", "Simple Loop Unrolling Pass", false, false);
